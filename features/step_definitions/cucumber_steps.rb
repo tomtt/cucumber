@@ -32,3 +32,8 @@ end
 Then /^"(.*)" should match$/ do |file, text|
   IO.read(file).should =~ Regexp.new(text)
 end
+
+Then /^the file "([^\"]*)" should not exist$/ do |filename|
+  filename = File.join(Dir.getwd, filename)
+  File.exist?(filename).should be_false
+end
